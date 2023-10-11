@@ -1,1 +1,2 @@
-# JBoss7.1DomainSessionReplication
+# Session Replication with JBoss 7.1 Using Domains.
+
