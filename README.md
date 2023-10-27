@@ -17,10 +17,10 @@ Steps
     5. Make Sure you add the admin password, so you can get to the console
         `./add-user.sh admin foopassword`
 2. Deploy the Session application
-    `git clone https://github.com/jgpreetham/basic-servlet-example.git` or https://github.com/liweinan/cluster-demo/tree/master
-    2\. edit the /basic\-servlet\-example/ServletSample/src/main/webapp/WEB\-INF and edit the web\.xml file and add "\<distributable/\>" under the "\<web\-app\>"
     1. Clone the repo for a session application
-
+       `git clone https://github.com/jgpreetham/basic-servlet-example.git` 
+    2. edit the /basic\-servlet\-example/ServletSample/src/main/webapp/WEB\-INF and edit the web\.xml file and add "\<distributable/\>" under the "\<web\-app\>"
+    
     example:
 
 ```
