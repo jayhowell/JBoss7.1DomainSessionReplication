@@ -69,49 +69,42 @@ This will turn on distributed sessions for that application.
     * Upload that jdbc jar file as a module in your console
 6. go to your console, add your datasource under the ha-full profile and test it
 7. Add Logic to the domain.xml to enable writes to the db
-
-    1. Look for the web session(name="web") section that looks like the following in the domain.xml file. Add the binary-keyed-jdbc-store.
-
-```
-<cache-container name="web" default-cache="dist" module="org.wildfly.clustering.web.infinispan">
-    <transport lock-timeout="60000"/>
-        <distributed-cache name="dist">
-            <locking isolation="REPEATABLE_READ"/>
-            <transaction mode="BATCH"/>
-            <file-store/>
-        </distributed-cache>                        
-```
-
-
+    1.  Look for the web session(name="web") section that looks like the following in the domain.xml file. Add the binary-keyed-jdbc-store.
+        ```
+        <cache-container name="web" default-cache="dist" module="org.wildfly.clustering.web.infinispan">
+            <transport lock-timeout="60000"/>
+                <distributed-cache name="dist">
+                    <locking isolation="REPEATABLE_READ"/>
+                    <transaction mode="BATCH"/>
+                    <file-store/>
+                </distributed-cache>                        
+        ```
     2. Add the following block to the distributed cache.
-
-
-```
-<binary-keyed-jdbc-store data-source="mySQLDS" dialect="MYSQL" create-table="true" passivation="false" preload="true" purge="true" shared="true" singleton="false">
-    <binary-keyed-table prefix="SESS">
-       <id-column name="id" type="VARCHAR2(500)"/>
-       <data-column name="datum" type="BLOB"/>
-       <timestamp-column name="version" type="NUMBER"/>
-    </binary-keyed-table>
-```
-
-
+        ```
+        <binary-keyed-jdbc-store data-source="mySQLDS" dialect="MYSQL" create-table="true" passivation="false" preload="true" purge="true" shared="true" singleton="false">
+            <binary-keyed-table prefix="SESS">
+               <id-column name="id" type="VARCHAR2(500)"/>
+               <data-column name="datum" type="BLOB"/>
+               <timestamp-column name="version" type="NUMBER"/>
+            </binary-keyed-table>
+        ```
     * Alternatively, you could have done this with the local-cache vs the distributed cache and the alternitive bock would look like. It probably makes more sense that you would choose the distributed cache or the db cache, but not both.
 
-
-```
-    <cache-container name="web" default-cache="database" module="org.wildfly.clustering.web.infinispan">
-        <local-cache name="database" >
-               <binary-keyed-jdbc-store data-source="mySQLDS" dialect="MYSQL" create-table="true" passivation="false" preload="true" purge="true" shared="true" singleton="false">
-                    <binary-keyed-table prefix="SESS">
-                        <id-column name="id" type="VARCHAR2(500)"/>
-                        <data-column name="datum" type="BLOB"/>
-                        <timestamp-column name="version" type="NUMBER"/>
-                    </binary-keyed-table>
-                </binary-keyed-jdbc-store>
-       </local-cache>
-   </cache-container>
-```
+        ```
+            <cache-container name="web" default-cache="database" module="org.wildfly.clustering.web.infinispan">
+                <local-cache name="database" >
+                       <binary-keyed-jdbc-store data-source="mySQLDS" dialect="MYSQL" create-table="true" passivation="false" preload="true" purge="true" shared="true" singleton="false">
+                            <binary-keyed-table prefix="SESS">
+                                <id-column name="id" type="VARCHAR2(500)"/>
+                                <data-column name="datum" type="BLOB"/>
+                                <timestamp-column name="version" type="NUMBER"/>
+                            </binary-keyed-table>
+                        </binary-keyed-jdbc-store>
+               </local-cache>
+           </cache-container>
+        ```
 
 
     3. Restart your server.
+9. 
+       
