@@ -33,33 +33,26 @@ This will turn on distributed sessions for that appliation.
 
 3. Clean and package and deploy the application to both Server Groups
 
-`mvn clean package`
+    1. Build the package
+         `mvn clean package`
 
-```
-1. Deploy content in the admin console to both Server groups
-    1. go into the management console on your local system at http://127.0.0.1:9990/console using the name you defined.
-    2. add the content
-    3. assign the deployment to both the main-server-group and the other-server-group
-```
+    2. Deploy content in the admin console to both Server groups
+        1. go into the management console on your local system at http://127.0.0.1:9990/console using the name you defined.
+        2. add the content
+        3. assign the deployment to both the main-server-group and the other-server-group
 
-```
-2. Add "server-three" into the "other server group" in the console
-```
+    3. Add "server-three" into the "other server group" in the console
+        * It's important that you call it "server-three" in order for the getsession.sh script to work.
 
-```
-    * It's important that you call it "server-three" in order for the getsession.sh script to work.
+    4. find the URLs of all of your servers(These were  mine)
+        * server-one - http://localhost:8080/ServletSample/
+        * server-two - http://localhost:8230/ServletSample/
+        * server-three - http://localhost:8180/ServletSample/
 
-3. find the URLs of all of your servers(These were  mine)
+    5. Understand How the domains are set up.
+        * The main-server-group is set up using the "full" profile, which does not include session replication
+        * The other-server-group is set up to use the "full-ha" profile, which does include session replication
 
-    * server-one - http://localhost:8080/ServletSample/
-    * server-two - http://localhost:8230/ServletSample/
-    * server-three - http://localhost:8180/ServletSample/
-
-4. Understand How the domains are set up.
-
-* The main-server-group is set up using the "full" profile, which does not include session replication
-* The other-server-group is set up to use the "full-ha" profile, which does include session replication
-```
 
 4. Fire up a Database
     1. login to the red hat registry
