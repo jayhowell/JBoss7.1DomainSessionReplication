@@ -106,5 +106,8 @@ This will turn on distributed sessions for that application.
 
 
     3. Restart your server.
-9. 
-       
+9. Watch your sessions in your servers as you connect to them
+    `watch getSessions.sh`
+   Notes:
+       * please keep in mind that you won't seee sessions move from server-two to server-three until you kill server-two
+       * But you can add things into your session in server-two, then go to server-three and see your session data.  It just won't be reflected in the counts as you watch until you kill server-two.
