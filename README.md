@@ -69,7 +69,7 @@ This will turn on distributed sessions for that application.
     * Upload that jdbc jar file as a module in your console
 6. go to your console, add your datasource under the ha-full profile and test it
 7. Add Logic to the domain.xml to enable writes to the db
-   
+   <br/>
     1. Look for the web session(name="web") section that looks like the following in the domain.xml file. Add the binary-keyed-jdbc-store.
 
 ```
