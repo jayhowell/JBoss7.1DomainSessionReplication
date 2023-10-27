@@ -1,4 +1,4 @@
-# Session Replication with JBoss 7.1 Using Domains.
+# Session Replication with EAP 7.1 Using Domains.
 
 **Purpose:**
 The purpose of this repo is to demonstrate both jboss session replication in a domain environment. As a bonus effort, we will be showing replication with infinispan over the wire and through a database. Interestingly enough, the database method can be used to bridge sessions accross multiple domains. This is not recommended. Domains have
