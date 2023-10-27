@@ -3,6 +3,10 @@
 **Purpose:**
 The purpose of this repo is to demonstrate both jboss session replication in a domain environment. As a bonus effort, we will be showing replication with infinispan over the wire and through a database. Interestingly enough, the database method can be used to bridge sessions accross multiple domains. This is not recommended. Domains have
 
+**Warning**
+<IMO>You really SHOULD NOT be pushing your sessions into a database.  It's a lot of trouble and cost to maintain a database and you don't get a ton out of it. A Session is usually regarded as a lightweight transient place to store things that are connected to the incoming http thread.  If you have things in your session(such as a shopping cart) that you want to store in a database, you should store those things separately under the user id. So when the user logs back in, under a different session, you can bring the cart back up.  Remember, when the browser is closed, the session is gone and can't be gotten back.(definition of transient).  IMO, Session memory is scratch memory that is used to facilitate continuity between pages. In memory over the wire Session Replication between web servers has been around for a long time and it's pretty solid.  Again, if you have something so important that you want to turn the transient session into a permanent record, you should store it separately so you can get it again when the user closes the browser window. 
+</IMO>
+
 <br>
 Steps
 
