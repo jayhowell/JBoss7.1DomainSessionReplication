@@ -80,13 +80,14 @@ This will turn on distributed sessions for that application.
                 <distributed-cache name="dist">
                     <locking isolation="REPEATABLE_READ"/>
                     <transaction mode="BATCH"/>
-<!--from here           <binary-keyed-jdbc-store data-source="mySQLDS" dialect="MYSQL" create-table="true" passivation="false" preload="true" purge="true" shared="true" singleton="false">
+from here           <binary-keyed-jdbc-store data-source="mySQLDS" dialect="MYSQL" create-table="true" passivation="false" preload="true" purge="true" shared="true" singleton="false">
                         <binary-keyed-table prefix="SESS">
                            <id-column name="id" type="VARCHAR(500)"/>
                            <data-column name="datum" type="BLOB"/>
                            <timestamp-column name="version" type="NUMERIC"/>
                          </binary-keyed-table>
-to here-->      </distributed-cache>                        
+to here             </binary-keyed-jdbc-store>
+                </distributed-cache>                        
         ```
    
     2. Alternatively, you could have done this with the local-cache vs the distributed cache and the alternitive bock would look like. It probably makes more sense that you would choose the distributed cache or the db cache, but not both.
@@ -103,10 +104,10 @@ to here-->      </distributed-cache>
                         </binary-keyed-jdbc-store>
                </local-cache>
            </cache-container>
-        ```
+        
     3.  Alternatively You could have done this in EAP 7.4 by using the same steps above but using the the following cache setting.
          * Please note that binary-keyed-jdbc-store was deprecated in EAP 7.1, so you need to use the jdbc-store.
-        ```
+        
            <distributed-cache name="dist">
                 <locking isolation="REPEATABLE_READ"/>
                 <transaction mode="BATCH"/>
@@ -118,7 +119,7 @@ to here-->      </distributed-cache>
                     </table>
                 </jdbc-store>
             </distributed-cache>
-        ```
+        
 
 
     4. Restart your server.
