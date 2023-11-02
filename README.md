@@ -99,13 +99,28 @@ This will turn on distributed sessions for that application.
                 <local-cache name="database" >
                        <binary-keyed-jdbc-store data-source="mySQLDS" dialect="MYSQL" create-table="true" passivation="false" preload="true" purge="true" shared="true" singleton="false">
                             <binary-keyed-table prefix="SESS">
-                                <id-column name="id" type="VARCHAR2(500)"/>
+                                <id-column name="id" type="VARCHAR(500)"/>
                                 <data-column name="datum" type="BLOB"/>
-                                <timestamp-column name="version" type="NUMBER"/>
+                                <timestamp-column name="version" type="NUMERIC"/>
                             </binary-keyed-table>
                         </binary-keyed-jdbc-store>
                </local-cache>
            </cache-container>
+        ```
+     * Alternatively You could have done this in EAP 7.4 by using the same steps above but using the the following cache setting.
+         * Please note that binary-keyed-jdbc-store was deprecated in EAP 7.1, so you need to use the jdbc-store.
+        ```
+           <distributed-cache name="dist">
+                <locking isolation="REPEATABLE_READ"/>
+                <transaction mode="BATCH"/>
+                <jdbc-store data-source="mySQLDS" dialect="MYSQL" passivation="false" preload="false" purge="false" shared="true" singleton="false">
+                    <table prefix="SESS">
+                        <id-column name="id" type="VARCHAR(500)"/>
+                        <data-column name="datum" type="BLOB"/>
+                        <timestamp-column name="version" type="NUMERIC"/>
+                    </table>
+                </jdbc-store>
+            </distributed-cache>
         ```
 
 
