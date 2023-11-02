@@ -80,19 +80,16 @@ This will turn on distributed sessions for that application.
                 <distributed-cache name="dist">
                     <locking isolation="REPEATABLE_READ"/>
                     <transaction mode="BATCH"/>
-                    <file-store/>
-                </distributed-cache>                        
+<!--from here           <binary-keyed-jdbc-store data-source="mySQLDS" dialect="MYSQL" create-table="true" passivation="false" preload="true" purge="true" shared="true" singleton="false">
+                        <binary-keyed-table prefix="SESS">
+                           <id-column name="id" type="VARCHAR(500)"/>
+                           <data-column name="datum" type="BLOB"/>
+                           <timestamp-column name="version" type="NUMERIC"/>
+                         </binary-keyed-table>
+to here-->      </distributed-cache>                        
         ```
-    2. Add the following block to the distributed cache.
-        ```
-        <binary-keyed-jdbc-store data-source="mySQLDS" dialect="MYSQL" create-table="true" passivation="false" preload="true" purge="true" shared="true" singleton="false">
-            <binary-keyed-table prefix="SESS">
-               <id-column name="id" type="VARCHAR(500)"/>
-               <data-column name="datum" type="BLOB"/>
-               <timestamp-column name="version" type="NUMERIC"/>
-            </binary-keyed-table>
-        ```
-    * Alternatively, you could have done this with the local-cache vs the distributed cache and the alternitive bock would look like. It probably makes more sense that you would choose the distributed cache or the db cache, but not both.
+   
+    2. Alternatively, you could have done this with the local-cache vs the distributed cache and the alternitive bock would look like. It probably makes more sense that you would choose the distributed cache or the db cache, but not both.
 
         ```
             <cache-container name="web" default-cache="database" module="org.wildfly.clustering.web.infinispan">
@@ -107,7 +104,7 @@ This will turn on distributed sessions for that application.
                </local-cache>
            </cache-container>
         ```
-     * Alternatively You could have done this in EAP 7.4 by using the same steps above but using the the following cache setting.
+    3.  Alternatively You could have done this in EAP 7.4 by using the same steps above but using the the following cache setting.
          * Please note that binary-keyed-jdbc-store was deprecated in EAP 7.1, so you need to use the jdbc-store.
         ```
            <distributed-cache name="dist">
@@ -124,7 +121,8 @@ This will turn on distributed sessions for that application.
         ```
 
 
-    3. Restart your server.
+    4. Restart your server.
+    
 9. Watch your sessions in your servers as you connect to them
     `watch getSessions.sh`
    Notes:
