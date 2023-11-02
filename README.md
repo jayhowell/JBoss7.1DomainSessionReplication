@@ -80,13 +80,13 @@ This will turn on distributed sessions for that application.
                 <distributed-cache name="dist">
                     <locking isolation="REPEATABLE_READ"/>
                     <transaction mode="BATCH"/>
-from here           <binary-keyed-jdbc-store data-source="mySQLDS" dialect="MYSQL" create-table="true" passivation="false" preload="true" purge="true" shared="true" singleton="false">
+                    <binary-keyed-jdbc-store data-source="mySQLDS" dialect="MYSQL" create-table="true" passivation="false" preload="true" purge="true" shared="true" singleton="false">
                         <binary-keyed-table prefix="SESS">
                            <id-column name="id" type="VARCHAR(500)"/>
                            <data-column name="datum" type="BLOB"/>
                            <timestamp-column name="version" type="NUMERIC"/>
                          </binary-keyed-table>
-to here             </binary-keyed-jdbc-store>
+                    </binary-keyed-jdbc-store>
                 </distributed-cache>                        
         ```
    
