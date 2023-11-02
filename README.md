@@ -87,9 +87,9 @@ This will turn on distributed sessions for that application.
         ```
         <binary-keyed-jdbc-store data-source="mySQLDS" dialect="MYSQL" create-table="true" passivation="false" preload="true" purge="true" shared="true" singleton="false">
             <binary-keyed-table prefix="SESS">
-               <id-column name="id" type="VARCHAR2(500)"/>
+               <id-column name="id" type="VARCHAR(500)"/>
                <data-column name="datum" type="BLOB"/>
-               <timestamp-column name="version" type="NUMBER"/>
+               <timestamp-column name="version" type="NUMERIC"/>
             </binary-keyed-table>
         ```
     * Alternatively, you could have done this with the local-cache vs the distributed cache and the alternitive bock would look like. It probably makes more sense that you would choose the distributed cache or the db cache, but not both.
