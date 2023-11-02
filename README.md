@@ -104,10 +104,10 @@ This will turn on distributed sessions for that application.
                         </binary-keyed-jdbc-store>
                </local-cache>
            </cache-container>
-        
+        ```
     3.  Alternatively You could have done this in EAP 7.4 by using the same steps above but using the the following cache setting.
-         * Please note that binary-keyed-jdbc-store was deprecated in EAP 7.1, so you need to use the jdbc-store.
-        
+        Please note that binary-keyed-jdbc-store was deprecated in EAP 7.1, so you need to use the jdbc-store.
+        ```
            <distributed-cache name="dist">
                 <locking isolation="REPEATABLE_READ"/>
                 <transaction mode="BATCH"/>
@@ -119,7 +119,7 @@ This will turn on distributed sessions for that application.
                     </table>
                 </jdbc-store>
             </distributed-cache>
-        
+        ```
 
 
     4. Restart your server.
